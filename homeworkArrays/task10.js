@@ -19,18 +19,18 @@ function task(arr) {
         if (field[ladybug] == 1) {
             switch (move) {
                 case "right":
-                    let toGo = ladybug + spaces;
-                    if (toGo < field.length) {
-                        while (toGo < field.length) {
-                            if (field[toGo] == 1) {
-                                toGo++;
-                                if(toGo >= field.length){
+                    let toGoRight = ladybug + spaces;
+                    if (toGoRight < field.length) {
+                        while (toGoRight < field.length) {
+                            if (field[toGoRight] == 1) {
+                                toGoRight++;
+                                if(toGoRight >= field.length){
                                     field[ladybug] = 0;
                                 }
                                 
                             }
                             else {
-                                field[toGo] = 1;
+                                field[toGoRight] = 1;
                                 field[ladybug] = 0;
                                 break;
                             }
@@ -67,8 +67,8 @@ function task(arr) {
     }
     console.log(field.join(" "));
 }
-task([ 3, '0 4',
+task([ 3, '-1 4',
 
 '0 left 1',
 
-'2 right 1' ])
+'2 left 1' ])
