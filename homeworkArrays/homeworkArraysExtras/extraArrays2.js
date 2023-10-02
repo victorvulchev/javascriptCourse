@@ -6,5 +6,9 @@ function task(arr){
         let action = arr[i];
         action === "add" ? newArr.push(counter) : newArr.pop();
     }
-    return newArr.join(" ");
+    if(newArr.length === 0 ){
+        console.log("Empty")
+    }
+    else{
+    return newArr.join(" ");}
 }
