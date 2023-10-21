@@ -4,9 +4,6 @@ function task(arr) {
         let newArr = arr[i].split(" ")
         hangar.push(newArr);
     }
-    for (let i of hangar) {
-        i.map(Number);
-    }
     let coordinates = hangar[hangar.length - 1];
     let bunnyDamage = 0;
     let kills = 0;
@@ -15,6 +12,9 @@ function task(arr) {
         let row = Number(exactCoordinates[0]);
         let col = Number(exactCoordinates[1]);
         let bombBunny = Number(hangar[row][col]);
+        if(bombBunny <= 0){
+            continue
+        }
         bunnyDamage += bombBunny
         kills++
         if( row != 0){//up
@@ -35,20 +35,26 @@ function task(arr) {
         if(row != hangar.length - 2 && col != 0){//leftDown
             hangar[row + 1][col - 1] = Number(hangar[row + 1][col - 1]) - bombBunny
         }
-        if(row != 0 && col == hangar[row].length - 1){//rightUp
+        if(row != 0 && col != hangar[row].length - 1){//rightUp
             hangar[row-1][col+1] = Number(hangar[row-1][col+1]) - bombBunny
         }
-        if(row == hangar.length - 2 && col == hangar[row].length - 1){//rightDown
+        if(row != hangar.length - 2 && col != hangar[row].length - 1){//rightDown
             hangar[row + 1][col + 1] = Number(hangar[row + 1][col + 1]) - bombBunny
 
         }
+        hangar[row][col] = 0
+        /*for(let f of hangar){
+            console.log(f)
+        }*/
+
         
     }
-    for(i = 0; i < hangar.length - 2; i++){
+    for(i = 0; i < hangar.length - 1; i++){
         for(j = 0; j< hangar[i].length; j++){
-            if(Number(hangar[i][j]) > 0){
-                bunnyDamage += Number(hangar[i][j])
-                kills++
+            let element = Number(hangar[i][j]);
+            if(element > 0){
+                bunnyDamage += element;
+                kills++;
             }
         }
     }
@@ -58,13 +64,15 @@ function task(arr) {
 
 
 }
-task(['10 10 10',
+task(['10 10 10 10',
 
-'10 10 10',
+      '10 10 10 10',
 
-'10 10 10',
+      '10 10 10 10',
 
-'0,0'])
+      '10 10 10 10',
+
+'0,0 3,0'])
 /*for (j = 0; j < hangar.length - 1; j++) {
             for (let k = 0; k < hangar[j].length; k++) {
                 let currentRow = hangar[j];
